@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Google Charts</title>
+
+
+
+    <!--Carregando AJAX API-->
+    <script src="https://www.google.com/jsapi"></script>
+    <script>
+
+      // Carregando a API para visualizar o pacote de gráficos
+      google.load('visualization', '1.0', {'packages':['corechart']});
+
+      // Você pode definir um callback para ser executado quando a API for carregada
+      google.setOnLoadCallback(drawChart);
+
+      // Callback que cria e preenche a tabela com os dados
+      // instancia o gráfico de pizza ou barra passa os dados e desenha.
+      function drawChart() {
+
+        // Cria a tabela de dados
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        data.addRows([
+          ['Homens', 4],
+          ['Mulheres', 1],
+          ['Criancas', 2],
+          ['Idosos', 1],
+          ['Outros', 2]
+        ]);
+
+        // Define as opções do gráfico
+        var options = {'title':'Título do gráfico',
+                       'width':400,
+                       'height':300};
+
+        // Instanciar e desenhar o gráfico, passando algumas opções
+
+        //Gráfico Pizza
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+
+        // Gráfico Barra
+        var chart = new google.visualization.BarChart(document.getElementById('bar_div'));
+        chart.draw(data, options);
+      }
+
+      
+      // OBS:
+      
+      // PieChart = Gráfico de pizza
+      // BarChart = Gráfico de barra
+      // O gráfico possui uma "interação com o mouse" ao encostar e ao clicar.
+
+      // Para saber mais: https://google-developers.appspot.com/chart/interactive/docs/basic_load_libs
+
+    </script>
+
+
+</head>
+<body>
+  
+  <!--Onde será impresso o gráfico-->
+  <div id="chart_div"></div>
+  <div id="bar_div"></div>
+
+
+</body>
+</html>
+
